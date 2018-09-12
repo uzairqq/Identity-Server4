@@ -53,5 +53,19 @@ namespace SocialNetwork.OAuth.Configuration
         }
     }
 }
+//=====We need to add this code in api project in startup.cs file In Configure service
+//services.AddAuthentication("Bearer")
+//.AddIdentityServerAuthentication(options =>
+//{
+//options.Authority = "http://localhost:59814/";
+//options.RequireHttpsMetadata = false;
+//options.ApiName = "socialnetwork";
+//});
+
+
+//== Add this in Configure method
+// app.UseAuthentication();
+
+
 //for downloading the identity quick start UI
 //iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/IdentityServer/IdentityServer4.Quickstart.UI/release/get.ps1'))
