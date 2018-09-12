@@ -24,6 +24,8 @@ namespace SocialNetwork.OAuth
                 .AddTestUsers(InMemoryConfiguration.Users().ToList())
                 .AddInMemoryClients(InMemoryConfiguration.Clients())
                 .AddInMemoryApiResources(InMemoryConfiguration.ApiResources());
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +36,11 @@ namespace SocialNetwork.OAuth
             app.UseDeveloperExceptionPage(); // gives us information when there is exception or a problem
 
             app.UseIdentityServer();//to use identity server
+
+            app.UseStaticFiles(); // to use static files in wwwroot or at any other place like css and js
+
+            app.UseMvcWithDefaultRoute();
+
         }
     }
 }
