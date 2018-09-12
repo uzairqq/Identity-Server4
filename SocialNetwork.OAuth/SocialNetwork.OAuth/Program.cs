@@ -20,6 +20,7 @@ namespace SocialNetwork.OAuth
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:59814")
                 .Build();
     }
 }
