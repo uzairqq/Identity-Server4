@@ -42,6 +42,12 @@ namespace SocialNetwork.OAuth.Configuration
                     SubjectId = "1",
                     Username = "uzair.qq@outlook.com",
                     Password = "password123"
+                },
+                new TestUser()
+                {
+                    SubjectId = "2",
+                    Username = "uzair.qq@gmail.com",
+                    Password = "password12345"
                 }
             };
         }

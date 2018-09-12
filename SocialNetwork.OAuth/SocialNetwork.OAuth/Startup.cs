@@ -18,6 +18,7 @@ namespace SocialNetwork.OAuth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentityServer()
+                .AddDeveloperSigningCredential()  //AddTemporarySigningCredential
                 .AddTestUsers(InMemoryConfiguration.Users().ToList())
                 .AddInMemoryClients(InMemoryConfiguration.Clients())
                 .AddInMemoryApiResources(InMemoryConfiguration.ApiResources());
