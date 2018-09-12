@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SocialNetwork.OAuth.Configuration;
 
 namespace SocialNetwork.OAuth
 {
@@ -17,7 +18,9 @@ namespace SocialNetwork.OAuth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentityServer()
-                .AddInMemoryApiResources();
+                .AddTestUsers(InMemoryConfiguration.Users().ToList())
+                .AddInMemoryClients(InMemoryConfiguration.Clients())
+                .AddInMemoryApiResources(InMemoryConfiguration.ApiResources());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
