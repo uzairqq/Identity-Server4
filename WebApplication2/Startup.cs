@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +23,23 @@ namespace WebApplication2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies"; //now we prepare our website for cookie authentication
+                options.DefaultChallengeScheme = "oidc";// this is the the scheme when we are talking with the authorization server
+            })
+                .AddCookie("Cookies")
+                .AddOpenIdConnect("oidc", options =>
+                {
+                    options.SignInScheme = "Cookies"; // identity the scheme
+
+                    options.Authority = "http://localhost:5000";  //pointing to the authorization server
+                    options.RequireHttpsMetadata = false;
+
+                    options.ClientId = "socialnetwork_implicit";
+                    options.SaveTokens = true;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +54,8 @@ namespace WebApplication2
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseAuthentication(); //for using authentication cookie
 
             app.UseStaticFiles();
 
