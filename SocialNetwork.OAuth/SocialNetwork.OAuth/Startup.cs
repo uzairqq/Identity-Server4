@@ -19,11 +19,15 @@ namespace SocialNetwork.OAuth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentityServer()
-                .AddSigningCredential(new X509Certificate2(@"D:\AspMVC\Identity-Server4\SocialNetwork.OAuth\SocialNetwork.OAuth\socialnetwork.pfx","password123")) // to use our own certificate 
+                .AddSigningCredential(new X509Certificate2(
+                    @"D:\AspMVC\Identity-Server4\SocialNetwork.OAuth\SocialNetwork.OAuth\socialnetwork.pfx",
+                    "password123")) // to use our own certificate 
                 //.AddDeveloperSigningCredential()  //AddTemporarySigningCredential
                 .AddTestUsers(InMemoryConfiguration.Users().ToList())
                 .AddInMemoryClients(InMemoryConfiguration.Clients())
+                .AddInMemoryIdentityResources(InMemoryConfiguration.IdentityResources())
                 .AddInMemoryApiResources(InMemoryConfiguration.ApiResources());
+               
 
             services.AddMvc();
         }

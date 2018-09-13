@@ -26,17 +26,15 @@ namespace WebApplication2
 
             services.AddAuthentication(options =>
             {
-                options.DefaultScheme = "Cookies"; //now we prepare our website for cookie authentication
+                options.DefaultScheme = "Cookies"; //we prepare our website for cookie authentication
                 options.DefaultChallengeScheme = "oidc";// this is the the scheme when we are talking with the authorization server
             })
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
                     options.SignInScheme = "Cookies"; // identity the scheme
-
-                    options.Authority = "http://localhost:5000";  //pointing to the authorization server
+                    options.Authority = "http://localhost:59814";  //pointing to the authorization server
                     options.RequireHttpsMetadata = false;
-
                     options.ClientId = "socialnetwork_implicit";
                     options.SaveTokens = true;
                 });

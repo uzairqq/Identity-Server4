@@ -38,21 +38,26 @@ namespace SocialNetwork.OAuth.Configuration
                     ClientId = "socialnetwork", //client id and client secret will always retreive with the token
                     ClientSecrets = new[] {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                    AllowedScopes = new[]
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "socialnetwork"
-                    }
+                    AllowedScopes = new[] {"socialnetwork"}
                 },
                 new Client()
                 {
                     ClientId = "socialnetwork_implicit", //mvc client id and client secret will always retreive with the token
                     ClientSecrets = new[] {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowedScopes = new[] {"socialnetwork"},
-                    RedirectUris = new []{"http://localhost:53013/signin-oidc"},//it needs to point to your application project
-                    PostLogoutRedirectUris = {"http://localhost:53013/signout-callback-oidc"}
+                    // where to redirect to after login
+                    RedirectUris = { "http://localhost:53013/signin-oidc" },//it needs to point to your application project
+
+                    // where to redirect to after logout
+                    PostLogoutRedirectUris = { "http://localhost:53013/signout-callback-oidc" },
+
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile
+                    }
+
+
                 }
             };
         }
