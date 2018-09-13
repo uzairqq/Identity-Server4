@@ -63,9 +63,10 @@ namespace SocialNetwork.OAuth.Configuration
 //});
 
 
-//== Add this in Configure method
+//== Add this in Configure method in api project
 // app.UseAuthentication();
 
+//==Add Authorize attribute in Controller in api project
 
 //for downloading the identity quick start UI
 //iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/IdentityServer/IdentityServer4.Quickstart.UI/release/get.ps1'))
