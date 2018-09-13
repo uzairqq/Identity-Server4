@@ -20,6 +20,15 @@ namespace SocialNetwork.OAuth.Configuration
             };
         }
 
+        public static IEnumerable<IdentityResource> IdentityResources()
+        {
+            return new IdentityResource[]
+            {
+                new IdentityResources.OpenId(), 
+                new IdentityResources.Profile()
+            };
+        }
+
         public static IEnumerable<Client> Clients()
         {
             return new[]
