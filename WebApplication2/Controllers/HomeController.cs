@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Models;
@@ -29,6 +30,12 @@ namespace WebApplication2.Controllers
             ViewData["Message"] = "Your contact page.";
 
             return View();
+        }
+
+        public async Task Logout()
+        {
+            await HttpContext.SignOutAsync("Cookies");// sign out from client cookie or we can say destroy key in client side
+            await HttpContext.SignOutAsync("oidc");// sign out from server  or we can say destroy key in server side
         }
 
         public IActionResult Error()

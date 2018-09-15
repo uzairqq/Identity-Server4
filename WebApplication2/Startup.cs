@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -24,6 +25,8 @@ namespace WebApplication2
         {
             services.AddMvc();
 
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();//to make sure theres nothing is tampered whatever comes from the authorization server
+
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies"; //we prepare our website for cookie authentication
@@ -37,6 +40,7 @@ namespace WebApplication2
                     options.RequireHttpsMetadata = false;
                     options.ClientId = "socialnetwork_implicit";
                     options.SaveTokens = true;
+                    options.ResponseType = "id_token token"; //to allow the access token default is id_token
                 });
         }
 

@@ -45,6 +45,7 @@ namespace SocialNetwork.OAuth.Configuration
                     ClientId = "socialnetwork_implicit", //mvc client id and client secret will always retreive with the token
                     ClientSecrets = new[] {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser = true, //to allow to get the access token via the browser
                     // where to redirect to after login
                     RedirectUris = { "http://localhost:53013/signin-oidc" },//it needs to point to your application project
 

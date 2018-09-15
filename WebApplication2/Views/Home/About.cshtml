@@ -1,4 +1,16 @@
-﻿@foreach (var user in User.Claims)
+﻿@using Microsoft.AspNetCore.Authentication
+
+
+<div>
+    <strong>token_id</strong>
+    <span>@await ViewContext.HttpContext.GetTokenAsync("id_token")</span>
+</div>
+<div>
+    <strong>Access Token</strong>
+    <span>@await ViewContext.HttpContext.GetTokenAsync("access_token")</span>
+</div>
+
+@foreach (var user in User.Claims)
 {
     <div>
         <strong>@user.Type</strong>
