@@ -35,12 +35,17 @@ namespace WebApplication2
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
+                    options.Scope.Add("socialnetwork");//to get access to these api or website . in this case i want to access the social network api.
+                    options.Scope.Add("offline_access");//to get access to these api or website . in this case i want to access the social network api.
+
                     options.SignInScheme = "Cookies"; // identity the scheme
                     options.Authority = "http://localhost:59814";  //pointing to the authorization server
                     options.RequireHttpsMetadata = false;
-                    options.ClientId = "socialnetwork_implicit";
+                    options.ClientId = "socialnetwork_code";
                     options.SaveTokens = true;
-                    options.ResponseType = "id_token token"; //to allow the access token default is id_token
+                    options.ClientSecret = "secret";
+                    options.ResponseType = "id_token code"; //to allow the access token default is id_token
+                    options.GetClaimsFromUserInfoEndpoint = true;//to get additional information about the user
                 });
         }
 

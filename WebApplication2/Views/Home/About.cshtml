@@ -9,6 +9,11 @@
     <strong>Access Token</strong>
     <span>@await ViewContext.HttpContext.GetTokenAsync("access_token")</span>
 </div>
+<div>
+    <strong>Refresh Token</strong>
+    <span>@await ViewContext.HttpContext.GetTokenAsync("refresh_token")</span>
+</div>
+
 
 @foreach (var user in User.Claims)
 {
