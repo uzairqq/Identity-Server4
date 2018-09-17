@@ -17,6 +17,11 @@ namespace WebApplication2.Controllers
             return View();
         }
 
+        //public void RefreshToken()
+        //{
+        //    var discoveryClient = new DiscoveryClient("https://demo.identityserver.io");
+        //}
+
         [Authorize]
         public IActionResult About()
         {
