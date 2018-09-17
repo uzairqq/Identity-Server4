@@ -37,6 +37,7 @@ namespace WebApplication2
                 {
                     options.Scope.Add("socialnetwork");//to get access to these api or website . in this case i want to access the social network api.
                     options.Scope.Add("offline_access");//to get access to these api or website . in this case i want to access the social network api.
+                    options.Scope.Add("email");//to get access to these api or website . in this case i want to access the social network api.
 
                     options.SignInScheme = "Cookies"; // identity the scheme
                     options.Authority = "http://localhost:59814";  //pointing to the authorization server

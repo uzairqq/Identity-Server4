@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using IdentityServer4;
@@ -25,7 +26,8 @@ namespace SocialNetwork.OAuth.Configuration
             return new IdentityResource[]
             {
                 new IdentityResources.OpenId(), 
-                new IdentityResources.Profile()
+                new IdentityResources.Profile(),
+                new IdentityResources.Email()
             };
         }
 
@@ -60,6 +62,7 @@ namespace SocialNetwork.OAuth.Configuration
                 },
                 new Client()
                 {
+
                     ClientId = "socialnetwork_code", //mvc client id and client secret will always retreive with the token
                     ClientSecrets = new[] {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.Hybrid,
@@ -91,7 +94,8 @@ namespace SocialNetwork.OAuth.Configuration
                 {
                     SubjectId = "1",
                     Username = "uzair.qq@outlook.com",
-                    Password = "password123"
+                    Password = "password123",
+                    Claims = new []{new Claim("email","uzair.qq@outlook.com")}
                 },
                 new TestUser()
                 {
